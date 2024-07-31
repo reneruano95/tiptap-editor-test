@@ -16,7 +16,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning={true}>
       <LiveblocksProvider>
         <body className={inter.className}>{children}</body>
       </LiveblocksProvider>

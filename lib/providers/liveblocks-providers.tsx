@@ -12,7 +12,7 @@ interface LiveblocksProviderProps {
 
 export const LiveblocksProvider = ({ children }: LiveblocksProviderProps) => {
   return (
-    <Provider publicApiKey={"pk_dev_jB5fH…hZ39AH"}>
+    <Provider authEndpoint="/api/liveblocks-auth">
       <ClientSideSuspense fallback={<LiveblocksLoader />}>
         {children}
       </ClientSideSuspense>
