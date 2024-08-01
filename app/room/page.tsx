@@ -1,10 +1,13 @@
 "use client";
-import { CollaborativeEditor } from "@/components/tiptap-editor/editor";
+
+import { CollaborativeEditor } from "@/components/tiptap-editor/advance-editor";
 
 export default function RoomPage() {
   return (
-    <div className="min-h-screen h-full flex flex-col items-center justify-center p-4">
-      <CollaborativeEditor />
-    </div>
+    <main className="flex min-h-screen flex-col items-center justify-between p-6">
+      <div className="flex flex-col p-6 border max-w-xl w-full gap-6 rounded-md bg-card">
+        <CollaborativeEditor />
+      </div>
+    </main>
   );
 }

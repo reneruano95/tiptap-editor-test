@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import "./prosemirror.css";
 import { LiveblocksProvider } from "@/lib/providers/liveblocks-providers";
+import { Toaster } from "sonner";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,7 +20,10 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning={true}>
       <body className={inter.className}>
-        <LiveblocksProvider>{children}</LiveblocksProvider>
+        <LiveblocksProvider>
+          {children}
+          <Toaster />
+        </LiveblocksProvider>
       </body>
     </html>
   );
