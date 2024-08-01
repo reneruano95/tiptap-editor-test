@@ -17,9 +17,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning={true}>
-      <LiveblocksProvider>
-        <body className={inter.className}>{children}</body>
-      </LiveblocksProvider>
+      <body className={inter.className}>
+        <LiveblocksProvider>{children}</LiveblocksProvider>
+      </body>
     </html>
   );
 }

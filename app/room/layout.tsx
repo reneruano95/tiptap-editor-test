@@ -9,10 +9,12 @@ interface RoomLayout {
 }
 export default function RoomLayout({ children, roomId }: RoomLayout) {
   return (
-    <RoomProvider id={"new-room"}>
-      <ClientSideSuspense fallback={<LiveblocksLoader />}>
-        {children}
-      </ClientSideSuspense>
-    </RoomProvider>
+    <div className="min-h-screen h-full">
+      <RoomProvider id={"new-room"}>
+        <ClientSideSuspense fallback={<LiveblocksLoader />}>
+          {children}
+        </ClientSideSuspense>
+      </RoomProvider>
+    </div>
   );
 }
