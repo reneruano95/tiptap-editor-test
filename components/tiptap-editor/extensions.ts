@@ -124,6 +124,7 @@ const starterKit = StarterKit.configure({
     color: "#DBEAFE",
     width: 4,
   },
+  horizontalRule: false,
   gapcursor: false,
   history: false,
 });

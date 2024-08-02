@@ -7,7 +7,6 @@ import {
   ImageIcon,
   List,
   ListOrdered,
-  MessageSquarePlus,
   Minus,
   Text,
   TextQuote,
@@ -30,15 +29,6 @@ export const suggestionItems = createSuggestionItems([
         .deleteRange(range)
         .toggleNode("paragraph", "paragraph")
         .run();
-    },
-  },
-  {
-    title: "To-do List",
-    description: "Track tasks with a to-do list.",
-    searchTerms: ["todo", "task", "list", "check", "checkbox"],
-    icon: <CheckSquare size={18} />,
-    command: ({ editor, range }) => {
-      editor.chain().focus().deleteRange(range).toggleTaskList().run();
     },
   },
   {
@@ -81,6 +71,15 @@ export const suggestionItems = createSuggestionItems([
         .deleteRange(range)
         .setNode("heading", { level: 3 })
         .run();
+    },
+  },
+  {
+    title: "To-do List",
+    description: "Track tasks with a to-do list.",
+    searchTerms: ["todo", "task", "list", "check", "checkbox"],
+    icon: <CheckSquare size={18} />,
+    command: ({ editor, range }) => {
+      editor.chain().focus().deleteRange(range).toggleTaskList().run();
     },
   },
   {
