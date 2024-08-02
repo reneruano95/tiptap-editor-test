@@ -8,6 +8,7 @@ import {
   List,
   ListOrdered,
   MessageSquarePlus,
+  Minus,
   Text,
   TextQuote,
   Youtube,
@@ -121,6 +122,14 @@ export const suggestionItems = createSuggestionItems([
     icon: <Code size={18} />,
     command: ({ editor, range }) =>
       editor.chain().focus().deleteRange(range).toggleCodeBlock().run(),
+  },
+  {
+    title: "Horizontal Rule",
+    description: "Insert a horizontal rule.",
+    searchTerms: ["divider", "line", "separator"],
+    icon: <Minus size={18} />,
+    command: ({ editor, range }) =>
+      editor.chain().focus().deleteRange(range).setHorizontalRule().run(),
   },
   {
     title: "Image",
