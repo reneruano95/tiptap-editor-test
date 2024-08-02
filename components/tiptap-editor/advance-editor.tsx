@@ -32,6 +32,7 @@ import * as Y from "yjs";
 import { MathSelector } from "./selectors/math-selector";
 
 import "@/styles/index.css";
+import { ContentItemMenu } from "./menu-drag/content-item-menu";
 
 const hljs = require("highlight.js");
 
@@ -153,6 +154,8 @@ const Editor = ({ doc, provider }: EditorProps) => {
             setCharsCount(charCount);
           }}
         >
+          <ContentItemMenu />
+
           <EditorCommand className="z-50 h-auto max-h-[330px] overflow-y-auto rounded-md border border-muted bg-background px-1 py-2 shadow-md transition-all">
             <EditorCommandEmpty className="px-2 text-muted-foreground">
               No results

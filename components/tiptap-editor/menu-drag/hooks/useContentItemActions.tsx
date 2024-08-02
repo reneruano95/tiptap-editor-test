@@ -3,7 +3,7 @@ import { NodeSelection } from "@tiptap/pm/state";
 import { Editor } from "@tiptap/react";
 import { useCallback } from "react";
 
-const useContentItemActions = (
+export const useContentItemActions = (
   editor: Editor,
   currentNode: Node | null,
   currentNodePos: number
@@ -100,5 +100,3 @@ const useContentItemActions = (
     handleAdd,
   };
 };
-
-export default useContentItemActions;
