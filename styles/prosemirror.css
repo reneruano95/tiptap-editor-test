@@ -170,6 +170,7 @@ ul[data-type="taskList"] li[data-checked="true"] > div > p {
 .drag-handle {
   position: fixed;
   opacity: 1;
+
   transition: opacity ease-in 0.2s;
   border-radius: 0.25rem;
 
@@ -181,6 +182,7 @@ ul[data-type="taskList"] li[data-checked="true"] > div > p {
   height: 1.5rem;
   z-index: 50;
   cursor: grab;
+  margin-right: 0.5rem;
 
   &:hover {
     background-color: var(--novel-stone-100);

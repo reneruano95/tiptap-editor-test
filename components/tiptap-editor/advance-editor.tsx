@@ -109,8 +109,7 @@ const Editor = ({ doc, provider }: EditorProps) => {
       </div>
       <EditorRoot>
         <EditorContent
-          className="border rounded-xl"
-          initialContent={defaultEditorContent}
+          className="ease-in-out duration-300 transition-all"
           extensions={[
             ...defaultExtensions,
             slashCommand,
