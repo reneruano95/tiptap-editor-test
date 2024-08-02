@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "@/styles/globals.css";
-import "@/styles/prosemirror.css";
+
 import { LiveblocksProvider } from "@/lib/providers/liveblocks-providers";
 import { Toaster } from "sonner";
 

@@ -1,4 +1,5 @@
 import {
+  Book,
   CheckSquare,
   Code,
   Heading1,
@@ -129,6 +130,15 @@ export const suggestionItems = createSuggestionItems([
     icon: <Minus size={18} />,
     command: ({ editor, range }) =>
       editor.chain().focus().deleteRange(range).setHorizontalRule().run(),
+  },
+  {
+    title: "Table of Contents",
+    description: "Generate a table of contents.",
+    searchTerms: ["toc", "table of contents"],
+    icon: <Book size={18} />,
+    command: ({ editor, range }) => {
+      editor.chain().focus().deleteRange(range).insertTableOfContents().run();
+    },
   },
   {
     title: "Image",

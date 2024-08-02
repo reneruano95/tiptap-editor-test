@@ -22,11 +22,13 @@ import {
 } from "novel/extensions";
 import { UploadImagesPlugin } from "novel/plugins";
 
+import TableOfContents from "@tiptap-pro/extension-table-of-contents";
 import GlobalDragHandle from "tiptap-extension-global-drag-handle";
 import AutoJoiner from "tiptap-extension-auto-joiner";
 
 import { cx } from "class-variance-authority";
 import { common, createLowlight } from "lowlight";
+import { TableOfContentsNode } from "./table-of-contents/table-of-contents-node";
 
 //TODO I am using cx here to get tailwind autocomplete working, idk if someone else can write a regex to just capture the class key in objects
 const aiHighlight = AIHighlight;
@@ -52,6 +54,9 @@ const globalDragHandle = GlobalDragHandle.configure({
   // You can set this to 0 to prevent auto scrolling caused by this extension
   scrollTreshold: 100, // default
 });
+
+const tableOfContents = TableOfContents;
+const tableOfContentsNode = TableOfContentsNode;
 
 const autoJoiner = AutoJoiner.configure({
   elementsToJoin: ["bulletList", "orderedList"], // default
@@ -90,9 +95,13 @@ const taskItem = TaskItem.configure({
   nested: true,
 });
 
-const horizontalRule = HorizontalRule.configure({
-  HTMLAttributes: {
-    class: cx("mt-4 mb-6 border-t border-muted-foreground"),
+const horizontalRule = HorizontalRule.extend({
+  renderHTML() {
+    return [
+      "div",
+      (this.options.HTMLAttributes, { "data-type": this.name }),
+      ["hr"],
+    ];
   },
 });
 
@@ -199,4 +208,6 @@ export const defaultExtensions = [
   CustomKeymap,
   globalDragHandle,
   autoJoiner,
+  tableOfContents,
+  tableOfContentsNode,
 ];

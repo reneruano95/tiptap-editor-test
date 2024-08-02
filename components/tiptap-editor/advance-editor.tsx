@@ -12,9 +12,9 @@ import {
   EditorBubble,
   useEditor,
 } from "novel";
-import { defaultEditorContent } from "@/lib/content";
+
 import { ImageResizer, handleCommandNavigation } from "novel/extensions";
-import { defaultExtensions } from "./extensions";
+import { defaultExtensions } from "./extensions/extensions";
 import { NodeSelector } from "./selectors/node-selector";
 import { LinkSelector } from "./selectors/link-selector";
 import { ColorSelector } from "./selectors/color-selector";
@@ -30,6 +30,8 @@ import { LiveblocksYjsProvider } from "@liveblocks/yjs";
 import { useRoom } from "@liveblocks/react";
 import * as Y from "yjs";
 import { MathSelector } from "./selectors/math-selector";
+
+import "@/styles/index.css";
 
 const hljs = require("highlight.js");
 
