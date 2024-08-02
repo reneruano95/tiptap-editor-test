@@ -111,6 +111,12 @@ const starterKit = StarterKit.configure({
       spellcheck: "false",
     },
   },
+  heading: {
+    HTMLAttributes: {
+      class: cx("font-title font-bold"),
+    },
+  },
+
   horizontalRule: false,
   dropcursor: {
     color: "#DBEAFE",

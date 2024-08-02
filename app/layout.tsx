@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import "./globals.css";
-import "./prosemirror.css";
+import "@/styles/globals.css";
+import "@/styles/prosemirror.css";
 import { LiveblocksProvider } from "@/lib/providers/liveblocks-providers";
 import { Toaster } from "sonner";
 
@@ -18,7 +18,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning={true}>
+    <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
         <LiveblocksProvider>
           {children}

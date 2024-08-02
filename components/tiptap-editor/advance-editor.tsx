@@ -12,6 +12,7 @@ import {
   EditorBubble,
   useEditor,
 } from "novel";
+import { defaultEditorContent } from "@/lib/content";
 import { ImageResizer, handleCommandNavigation } from "novel/extensions";
 import { defaultExtensions } from "./extensions";
 import { NodeSelector } from "./selectors/node-selector";
@@ -108,7 +109,8 @@ const Editor = ({ doc, provider }: EditorProps) => {
       </div>
       <EditorRoot>
         <EditorContent
-          className="border p-4 rounded-xl"
+          className="border rounded-xl"
+          initialContent={defaultEditorContent}
           extensions={[
             ...defaultExtensions,
             slashCommand,
@@ -118,7 +120,8 @@ const Editor = ({ doc, provider }: EditorProps) => {
               fragment: doc.getXmlFragment("content"),
               onFirstRender: () => {
                 // Scroll to the bottom of the editor
-                window.scrollTo(0, document.body.scrollHeight);
+                const { editor } = useEditor();
+                editor?.view.dispatch(editor.view.state.tr.scrollIntoView());
               },
             }),
             // Attach provider and user info
@@ -140,6 +143,8 @@ const Editor = ({ doc, provider }: EditorProps) => {
           }}
           slotAfter={<ImageResizer />}
           onUpdate={({ editor }) => {
+            const content = editor.getHTML();
+            const highlightedContent = highlightCodeblocks(content);
             const charCount = editor.storage.characterCount.characters();
             const wordCount = editor.storage.characterCount.words();
 
