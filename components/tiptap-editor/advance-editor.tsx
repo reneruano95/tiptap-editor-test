@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { EditorRoot, EditorContent, EditorBubble, useEditor } from "novel";
 import { handleImageDrop, handleImagePaste } from "novel/plugins";
 import Collaboration from "@tiptap/extension-collaboration";
@@ -22,6 +22,9 @@ import { MathSelector } from "./selectors/math-selector";
 import { ContentItemMenu } from "./drag-handle-menu/content-item-menu";
 
 import "@/styles/index.css";
+import ColumnsMenu from "./extensions/multi-column/column-menu";
+import TableRowMenu from "./extensions/table/table-row/table-row";
+import TableColumnMenu from "./extensions/table/table-column/table-column";
 
 const hljs = require("highlight.js");
 
@@ -56,6 +59,7 @@ type EditorProps = {
 };
 
 const Editor = ({ doc, provider }: EditorProps) => {
+  const menuContainerRef = useRef(null);
   const [openNode, setOpenNode] = useState(false);
   const [openColor, setOpenColor] = useState(false);
   const [openLink, setOpenLink] = useState(false);
@@ -75,7 +79,7 @@ const Editor = ({ doc, provider }: EditorProps) => {
   };
 
   return (
-    <div className="relative w-full max-w-screen-lg">
+    <div className="relative w-full max-w-screen-lg" ref={menuContainerRef}>
       <div className="flex absolute right-5 top-5 z-10 mb-5 gap-2">
         {/* <div className="rounded-lg bg-accent px-2 py-1 text-sm text-muted-foreground">
           {saveStatus}
@@ -108,11 +112,6 @@ const Editor = ({ doc, provider }: EditorProps) => {
             Collaboration.configure({
               document: doc,
               fragment: doc.getXmlFragment("content"),
-              onFirstRender: () => {
-                // Scroll to the bottom of the editor
-                const { editor } = useEditor();
-                editor?.view.dispatch(editor.view.state.tr.scrollIntoView());
-              },
             }),
             // Attach provider and user info
             CollaborationCursor.configure({
@@ -143,14 +142,20 @@ const Editor = ({ doc, provider }: EditorProps) => {
           }}
         >
           <ContentItemMenu />
+          <ColumnsMenu appendTo={menuContainerRef} />
+          <TableRowMenu appendTo={menuContainerRef} />
+          <TableColumnMenu appendTo={menuContainerRef} />
 
           <EditorBubble
+            shouldShow={({ editor }) =>
+              !editor.isActive("tableCell") &&
+              !editor.isActive("tableOfContentsNode")
+            }
             tippyOptions={{
               placement: "top",
             }}
             className="flex w-fit max-w-[90vw] overflow-hidden rounded-md border border-muted bg-background shadow-xl"
           >
-            <Separator orientation="vertical" />
             <NodeSelector open={openNode} onOpenChange={setOpenNode} />
             <Separator orientation="vertical" />
             <MathSelector />

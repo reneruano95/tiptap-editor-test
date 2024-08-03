@@ -97,36 +97,36 @@ export const GROUPS: Group[] = [
     name: "insert",
     title: "Insert",
     commands: [
-      //   {
-      //     name: "table",
-      //     label: "Table",
-      //     iconName: "Table",
-      //     description: "Insert a table",
-      //     shouldBeHidden: (editor) => editor.isActive("columns"),
-      //     action: (editor) => {
-      //       editor
-      //         .chain()
-      //         .focus()
-      //         .insertTable({ rows: 3, cols: 3, withHeaderRow: false })
-      //         .run();
-      //     },
-      //   },
-      //   {
-      //     name: "columns",
-      //     label: "Columns",
-      //     iconName: "Columns",
-      //     description: "Add two column content",
-      //     aliases: ["cols"],
-      //     shouldBeHidden: (editor) => editor.isActive("columns"),
-      //     action: (editor) => {
-      //       editor
-      //         .chain()
-      //         .focus()
-      //         .setColumns()
-      //         .focus(editor.state.selection.head - 1)
-      //         .run();
-      //     },
-      //   },
+      {
+        name: "table",
+        label: "Table",
+        iconName: "Table",
+        description: "Insert a table",
+        shouldBeHidden: (editor) => editor.isActive("columns"),
+        action: (editor) => {
+          editor
+            .chain()
+            .focus()
+            .insertTable({ rows: 3, cols: 3, withHeaderRow: false })
+            .run();
+        },
+      },
+      {
+        name: "columns",
+        label: "Columns",
+        iconName: "Columns2",
+        description: "Add two column content",
+        aliases: ["cols"],
+        shouldBeHidden: (editor) => editor.isActive("columns"),
+        action: (editor) => {
+          editor
+            .chain()
+            .focus()
+            .setColumns()
+            .focus(editor.state.selection.head - 1)
+            .run();
+        },
+      },
       {
         name: "horizontalRule",
         label: "Horizontal Rule",

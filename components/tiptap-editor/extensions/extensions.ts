@@ -29,6 +29,12 @@ import { common, createLowlight } from "lowlight";
 
 import { TableOfContentsNode } from "./table-of-contents/table-of-contents-node";
 import SlashCommand from "./slash-commands/slash-command";
+import Column from "./multi-column/column";
+import Columns from "./multi-column/columns";
+import Table from "./table/table";
+import TableHeader from "./table/header";
+import TableRow from "./table/row";
+import { TableCell } from "./table/cell";
 
 //TODO I am using cx here to get tailwind autocomplete working, idk if someone else can write a regex to just capture the class key in objects
 const aiHighlight = AIHighlight;
@@ -114,13 +120,7 @@ const starterKit = StarterKit.configure({
       class: cx("border-l-4 border-primary"),
     },
   },
-  codeBlock: {
-    HTMLAttributes: {
-      class: cx(
-        "rounded-md bg-muted text-muted-foreground border p-5 font-mono font-medium"
-      ),
-    },
-  },
+
   code: {
     HTMLAttributes: {
       class: cx("rounded-md bg-muted  px-1.5 py-1 font-mono font-medium"),
@@ -138,6 +138,7 @@ const starterKit = StarterKit.configure({
     width: 4,
   },
   horizontalRule: false,
+  codeBlock: false,
   gapcursor: false,
   history: false,
 });
@@ -151,13 +152,6 @@ const codeBlockLowlight = CodeBlockLowlight.configure({
 const youtube = Youtube.configure({
   HTMLAttributes: {
     class: cx("rounded-lg border border-muted"),
-  },
-  inline: false,
-});
-
-const twitter = Twitter.configure({
-  HTMLAttributes: {
-    class: cx("not-prose"),
   },
   inline: false,
 });
@@ -185,7 +179,6 @@ export const defaultExtensions = [
   aiHighlight,
   codeBlockLowlight,
   youtube,
-  twitter,
   mathematics,
   characterCount,
   TiptapUnderline,
@@ -198,4 +191,10 @@ export const defaultExtensions = [
   tableOfContents,
   tableOfContentsNode,
   SlashCommand,
+  Column,
+  Columns,
+  Table,
+  TableCell,
+  TableHeader,
+  TableRow,
 ];
