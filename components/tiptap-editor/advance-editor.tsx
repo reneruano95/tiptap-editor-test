@@ -21,11 +21,14 @@ import { Separator } from "../ui/separator";
 import { MathSelector } from "./selectors/math-selector";
 import { ContentItemMenu } from "./drag-handle-menu/content-item-menu";
 
-import "@/styles/index.css";
 import ColumnsMenu from "./extensions/multi-column/column-menu";
 import TableRowMenu from "./extensions/table/table-row/table-row";
 import TableColumnMenu from "./extensions/table/table-column/table-column";
 import { TextAlignmentButton } from "./selectors/text-alignment-button";
+import { isTextSelected } from "@/lib/utils/isTextSelected";
+import isCustomNodeSelected from "@/lib/utils/isCustomNodeSelected";
+
+import "@/styles/index.css";
 
 const hljs = require("highlight.js");
 
@@ -148,6 +151,14 @@ const Editor = ({ doc, provider }: EditorProps) => {
           <TableColumnMenu appendTo={menuContainerRef} />
 
           <EditorBubble
+            shouldShow={({ editor }) => {
+              const element = document.querySelector(".selectedCell");
+
+              return (
+                isTextSelected(editor) &&
+                !isCustomNodeSelected(editor, element as HTMLElement)
+              );
+            }}
             tippyOptions={{
               placement: "top",
             }}

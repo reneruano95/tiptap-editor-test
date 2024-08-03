@@ -42,5 +42,3 @@ export const getRenderContainer = (editor: Editor, nodeType: string) => {
 
   return container;
 };
-
-export default getRenderContainer;

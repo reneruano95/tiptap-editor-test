@@ -15,7 +15,7 @@
   }
 
   & > .react-renderer {
-    @apply my-12 first:mt-0 last:mb-0;
+    @apply my-3 first:mt-0 last:mb-0;
   }
 
   &.resize-cursor {
@@ -36,6 +36,7 @@
 }
 
 @import "./partials/code.css";
+@import "./partials/lists.css";
 @import "./partials/placeholder.css";
 @import "./partials/table.css";
 @import "./partials/typography.css";

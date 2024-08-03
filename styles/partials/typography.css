@@ -1,22 +1,22 @@
 .ProseMirror {
   p {
-    @apply leading-relaxed my-3 first:mt-0 last:mb-0;
+    @apply leading-relaxed my-1 first:mt-0 last:mb-0;
   }
 
   & > p {
-    @apply my-3 first:mt-0 last:mb-0;
+    @apply my-1 first:mt-0 last:mb-0;
   }
 
   h1 {
-    @apply text-5xl;
-  }
-
-  h2 {
     @apply text-4xl;
   }
 
-  h3 {
+  h2 {
     @apply text-3xl;
+  }
+
+  h3 {
+    @apply text-2xl;
   }
 
   h1,
@@ -28,7 +28,7 @@
   h1,
   h2,
   h3 {
-    @apply my-6;
+    @apply my-2;
   }
 
   a.link {

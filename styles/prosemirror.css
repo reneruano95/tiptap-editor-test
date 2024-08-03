@@ -5,7 +5,7 @@
   }
 
   & > * + * {
-    margin-top: 0.75em;
+    @apply mt-2;
   }
 }
 
@@ -144,13 +144,4 @@ div[data-youtube-video] > iframe {
   div[data-youtube-video] > iframe {
     max-height: 100px;
   }
-}
-
-/* CSS for bold coloring and highlighting issue*/
-span[style] > strong {
-  color: inherit;
-}
-
-mark[style] > strong {
-  color: inherit;
 }

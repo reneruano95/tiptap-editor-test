@@ -45,7 +45,8 @@ export const TableColumnMenu = React.memo(
           appendTo: () => {
             return appendTo?.current;
           },
-          offset: [0, 15],
+          offset: [0, 8],
+          placement: "top",
           popperOptions: {
             modifiers: [{ name: "flip", enabled: false }],
           },
@@ -53,7 +54,7 @@ export const TableColumnMenu = React.memo(
         shouldShow={shouldShow}
       >
         <Toolbar.Wrapper isVertical>
-          <div className="text-black max-h-[min(80vh,24rem)] overflow-auto flex-wrap mb-8 p-2 bg-white rounded-lg dark:bg-black shadow-sm border border-neutral-200 dark:border-neutral-800">
+          <div className="text-black max-h-[min(80vh,24rem)] overflow-auto flex-wrap p-2 bg-white rounded-lg dark:bg-black shadow-sm border border-neutral-200 dark:border-neutral-800">
             <PopoverMenu.Item
               iconComponent={<Icon name="ArrowLeftToLine" />}
               close={false}

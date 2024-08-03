@@ -15,7 +15,6 @@ import {
   TiptapImage,
   TiptapLink,
   TiptapUnderline,
-  Twitter,
   UpdatedImage,
   Youtube,
   Mathematics,
@@ -101,43 +100,9 @@ const horizontalRule = HorizontalRule.extend({
 });
 
 const starterKit = StarterKit.configure({
-  bulletList: {
-    HTMLAttributes: {
-      class: cx("list-disc list-outside leading-3 -mt-2"),
-    },
-  },
-  orderedList: {
-    HTMLAttributes: {
-      class: cx("list-decimal list-outside leading-3 -mt-2"),
-    },
-  },
-  listItem: {
-    HTMLAttributes: {
-      class: cx("leading-normal -mb-2"),
-    },
-  },
-  blockquote: {
-    HTMLAttributes: {
-      class: cx("border-l-4 border-primary"),
-    },
-  },
-
-  code: {
-    HTMLAttributes: {
-      class: cx("rounded-md bg-muted  px-1.5 py-1 font-mono font-medium"),
-      spellcheck: "false",
-    },
-  },
-  heading: {
-    HTMLAttributes: {
-      class: cx("font-title font-bold"),
-    },
-  },
-
-  dropcursor: {
-    color: "#DBEAFE",
-    width: 4,
-  },
+  dropcursor: false,
+  code: false,
+  blockquote: false,
   horizontalRule: false,
   codeBlock: false,
   gapcursor: false,
