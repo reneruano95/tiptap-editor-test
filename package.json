@@ -17,6 +17,7 @@
     "@radix-ui/react-popover": "^1.1.1",
     "@radix-ui/react-separator": "^1.1.0",
     "@radix-ui/react-slot": "^1.1.0",
+    "@radix-ui/react-tooltip": "^1.1.2",
     "@tailwindcss/typography": "^0.5.13",
     "@tiptap-pro/extension-drag-handle-react": "^2.10.7",
     "@tiptap-pro/extension-table-of-contents": "^2.10.7",

@@ -4,12 +4,12 @@ import {
   Heading1,
   Heading2,
   Heading3,
-  TextQuote,
   ListOrdered,
   TextIcon,
   Code,
   CheckSquare,
   type LucideIcon,
+  Quote,
 } from "lucide-react";
 import { EditorBubbleItem, EditorInstance, useEditor } from "novel";
 
@@ -82,7 +82,7 @@ const items: SelectorItem[] = [
   },
   {
     name: "Quote",
-    icon: TextQuote,
+    icon: Quote,
     command: (editor) =>
       editor.chain().focus().clearNodes().toggleBlockquote().run(),
     isActive: (editor) => editor.isActive("blockquote"),

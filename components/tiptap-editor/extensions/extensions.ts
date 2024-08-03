@@ -21,13 +21,12 @@ import {
   Mathematics,
 } from "novel/extensions";
 import { UploadImagesPlugin } from "novel/plugins";
-
-import TableOfContents from "@tiptap-pro/extension-table-of-contents";
-import GlobalDragHandle from "tiptap-extension-global-drag-handle";
 import AutoJoiner from "tiptap-extension-auto-joiner";
 
+import TableOfContents from "@tiptap-pro/extension-table-of-contents";
 import { cx } from "class-variance-authority";
 import { common, createLowlight } from "lowlight";
+
 import { TableOfContentsNode } from "./table-of-contents/table-of-contents-node";
 
 //TODO I am using cx here to get tailwind autocomplete working, idk if someone else can write a regex to just capture the class key in objects
@@ -39,9 +38,7 @@ const placeholder = Placeholder.configure({
 });
 const tiptapLink = TiptapLink.configure({
   HTMLAttributes: {
-    class: cx(
-      "text-muted-foreground underline underline-offset-[3px] hover:text-primary transition-colors cursor-pointer"
-    ),
+    class: cx("link", "no-underline  hover:underline"),
   },
 });
 

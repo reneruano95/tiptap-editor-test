@@ -1,9 +1,9 @@
 "use client";
 
 import { memo, useEffect, useState } from "react";
+import { EditorInstance, useEditor } from "novel";
 import { TableOfContentsStorage } from "@tiptap-pro/extension-table-of-contents";
 import { cn } from "@/lib/utils";
-import { EditorInstance, useEditor } from "novel";
 
 export type TableOfContentsProps = {
   onItemClick?: () => void;
@@ -13,9 +13,7 @@ export const TableOfContents = memo(({ onItemClick }: TableOfContentsProps) => {
   const { editor } = useEditor();
   const [data, setData] = useState<TableOfContentsStorage | null>(null);
 
-  if (!editor) {
-    return null;
-  }
+  if (!editor) return null;
 
   useEffect(() => {
     const handler = ({ editor: currentEditor }: { editor: EditorInstance }) => {
