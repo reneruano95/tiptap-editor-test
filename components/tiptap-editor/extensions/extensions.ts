@@ -21,9 +21,10 @@ import {
 } from "novel/extensions";
 import { UploadImagesPlugin } from "novel/plugins";
 import AutoJoiner from "tiptap-extension-auto-joiner";
-
+import { Document as TiptapDocument } from "@tiptap/extension-document";
 import TableOfContents from "@tiptap-pro/extension-table-of-contents";
 import { TextAlign } from "@tiptap/extension-text-align";
+
 import { cx } from "class-variance-authority";
 import { common, createLowlight } from "lowlight";
 
@@ -31,9 +32,9 @@ import { TableOfContentsNode } from "./table-of-contents/table-of-contents-node"
 import SlashCommand from "./slash-commands/slash-command";
 import Column from "./multi-column/column";
 import Columns from "./multi-column/columns";
-import Table from "./table/table";
-import TableHeader from "./table/header";
-import TableRow from "./table/row";
+import { Table } from "./table/table";
+import { TableHeader } from "./table/header";
+import { TableRow } from "./table/row";
 import { TableCell } from "./table/cell";
 
 //TODO I am using cx here to get tailwind autocomplete working, idk if someone else can write a regex to just capture the class key in objects
@@ -51,6 +52,10 @@ const tiptapLink = TiptapLink.configure({
 
 const tableOfContents = TableOfContents;
 const tableOfContentsNode = TableOfContentsNode;
+
+const document = TiptapDocument.extend({
+  content: "(block|columns)+",
+});
 
 const autoJoiner = AutoJoiner.configure({
   elementsToJoin: ["bulletList", "orderedList"], // default
@@ -100,6 +105,7 @@ const horizontalRule = HorizontalRule.extend({
 });
 
 const starterKit = StarterKit.configure({
+  document: false,
   dropcursor: false,
   code: false,
   blockquote: false,
@@ -172,4 +178,5 @@ export const defaultExtensions = [
   TableHeader,
   TableRow,
   textAlign,
+  document,
 ];
