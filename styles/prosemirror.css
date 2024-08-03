@@ -9,14 +9,6 @@
   }
 }
 
-/* .ProseMirror .is-editor-empty:first-child::before {
-  content: attr(data-placeholder);
-  float: left;
-  color: hsl(var(--muted-foreground));
-  pointer-events: none;
-  height: 0;
-} */
-
 /* Custom image styles */
 .ProseMirror img {
   transition: filter 0.1s ease-in-out;
@@ -112,12 +104,6 @@ ul[data-type="taskList"] li[data-checked="true"] > div > p {
   color: var(--muted-foreground);
   text-decoration: line-through;
   text-decoration-thickness: 2px;
-}
-
-/* Overwrite tippy-box original max-width */
-
-.tippy-box {
-  max-width: 400px !important;
 }
 
 .ProseMirror:not(.dragging) .ProseMirror-selectednode {

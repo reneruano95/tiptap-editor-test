@@ -49,6 +49,7 @@ export const TableOfContents = memo(({ onItemClick }: TableOfContentsProps) => {
                 item.isActive &&
                   "text-neutral-800 bg-neutral-100 dark:text-neutral-100 dark:bg-neutral-900"
               )}
+              target="_self"
             >
               {item.itemIndex}. {item.textContent}
             </a>

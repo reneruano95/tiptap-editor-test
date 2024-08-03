@@ -1,38 +1,27 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import {
-  EditorRoot,
-  EditorCommand,
-  EditorCommandItem,
-  EditorCommandEmpty,
-  EditorContent,
-  type JSONContent,
-  EditorCommandList,
-  EditorBubble,
-  useEditor,
-} from "novel";
+import { EditorRoot, EditorContent, EditorBubble, useEditor } from "novel";
+import { handleImageDrop, handleImagePaste } from "novel/plugins";
+import Collaboration from "@tiptap/extension-collaboration";
+import CollaborationCursor from "@tiptap/extension-collaboration-cursor";
+import { LiveblocksYjsProvider } from "@liveblocks/yjs";
+import { useRoom } from "@liveblocks/react";
+import * as Y from "yjs";
 
 import { ImageResizer, handleCommandNavigation } from "novel/extensions";
+import { uploadFn } from "./image-upload";
 import { defaultExtensions } from "./extensions/extensions";
 import { NodeSelector } from "./selectors/node-selector";
 import { LinkSelector } from "./selectors/link-selector";
 import { ColorSelector } from "./selectors/color-selector";
 
 import { TextButtons } from "./selectors/text-buttons";
-import { slashCommand, suggestionItems } from "./slash-commands";
-import { handleImageDrop, handleImagePaste } from "novel/plugins";
-import { uploadFn } from "./image-upload";
 import { Separator } from "../ui/separator";
-import Collaboration from "@tiptap/extension-collaboration";
-import CollaborationCursor from "@tiptap/extension-collaboration-cursor";
-import { LiveblocksYjsProvider } from "@liveblocks/yjs";
-import { useRoom } from "@liveblocks/react";
-import * as Y from "yjs";
 import { MathSelector } from "./selectors/math-selector";
+import { ContentItemMenu } from "./drag-handle-menu/content-item-menu";
 
 import "@/styles/index.css";
-import { ContentItemMenu } from "./drag-handle-menu/content-item-menu";
 
 const hljs = require("highlight.js");
 
@@ -115,7 +104,6 @@ const Editor = ({ doc, provider }: EditorProps) => {
           className="ease-in-out duration-300 transition-all"
           extensions={[
             ...defaultExtensions,
-            slashCommand,
             // Register the document with Tiptap
             Collaboration.configure({
               document: doc,
@@ -155,32 +143,6 @@ const Editor = ({ doc, provider }: EditorProps) => {
           }}
         >
           <ContentItemMenu />
-
-          <EditorCommand className="z-50 h-auto max-h-[330px] overflow-y-auto rounded-md border border-muted bg-background px-1 py-2 shadow-md transition-all">
-            <EditorCommandEmpty className="px-2 text-muted-foreground">
-              No results
-            </EditorCommandEmpty>
-            <EditorCommandList>
-              {suggestionItems.map((item) => (
-                <EditorCommandItem
-                  value={item.title}
-                  onCommand={(val) => item.command?.(val)}
-                  className={`flex w-full items-center space-x-2 rounded-md px-2 py-1 text-left text-sm hover:bg-accent aria-selected:bg-accent `}
-                  key={item.title}
-                >
-                  <div className="flex h-10 w-10 items-center justify-center rounded-md border border-muted bg-background">
-                    {item.icon}
-                  </div>
-                  <div>
-                    <p className="font-medium">{item.title}</p>
-                    <p className="text-xs text-muted-foreground">
-                      {item.description}
-                    </p>
-                  </div>
-                </EditorCommandItem>
-              ))}
-            </EditorCommandList>
-          </EditorCommand>
 
           <EditorBubble
             tippyOptions={{

@@ -5,8 +5,6 @@ import { useEditor } from "novel";
 import {
   Clipboard,
   Copy,
-  Delete,
-  DeleteIcon,
   GripVertical,
   Plus,
   RemoveFormatting,

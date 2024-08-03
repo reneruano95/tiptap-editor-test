@@ -28,6 +28,7 @@ import { cx } from "class-variance-authority";
 import { common, createLowlight } from "lowlight";
 
 import { TableOfContentsNode } from "./table-of-contents/table-of-contents-node";
+import SlashCommand from "./slash-commands/slash-command";
 
 //TODO I am using cx here to get tailwind autocomplete working, idk if someone else can write a regex to just capture the class key in objects
 const aiHighlight = AIHighlight;
@@ -196,4 +197,5 @@ export const defaultExtensions = [
   autoJoiner,
   tableOfContents,
   tableOfContentsNode,
+  SlashCommand,
 ];
