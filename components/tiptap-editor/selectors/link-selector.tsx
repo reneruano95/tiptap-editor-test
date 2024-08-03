@@ -110,3 +110,5 @@ export const LinkSelector = memo(
     );
   }
 );
+
+LinkSelector.displayName = "LinkSelector";

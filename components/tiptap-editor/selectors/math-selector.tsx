@@ -34,3 +34,5 @@ export const MathSelector = memo(() => {
     </Button>
   );
 });
+
+MathSelector.displayName = "MathSelector";

@@ -194,3 +194,5 @@ export const ColorSelector = memo(
     );
   }
 );
+
+ColorSelector.displayName = "ColorSelector";

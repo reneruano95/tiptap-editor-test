@@ -160,3 +160,5 @@ export const NodeSelector = memo(
     );
   }
 );
+
+NodeSelector.displayName = "NodeSelector";

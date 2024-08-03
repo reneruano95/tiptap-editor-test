@@ -11,11 +11,10 @@ import { useEditor } from "novel";
 export const TableColumnMenu = React.memo(
   ({ appendTo }: MenuProps): JSX.Element => {
     const { editor } = useEditor();
-    if (!editor) return <></>;
 
     const shouldShow = useCallback(
       ({ view, state, from }: ShouldShowProps) => {
-        if (!state) {
+        if (!state || !editor) {
           return false;
         }
 
@@ -25,15 +24,15 @@ export const TableColumnMenu = React.memo(
     );
 
     const onAddColumnBefore = useCallback(() => {
-      editor.chain().focus().addColumnBefore().run();
+      editor?.chain().focus().addColumnBefore().run();
     }, [editor]);
 
     const onAddColumnAfter = useCallback(() => {
-      editor.chain().focus().addColumnAfter().run();
+      editor?.chain().focus().addColumnAfter().run();
     }, [editor]);
 
     const onDeleteColumn = useCallback(() => {
-      editor.chain().focus().deleteColumn().run();
+      editor?.chain().focus().deleteColumn().run();
     }, [editor]);
 
     return (

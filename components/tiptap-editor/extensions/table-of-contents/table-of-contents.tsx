@@ -13,13 +13,12 @@ export const TableOfContents = memo(({ onItemClick }: TableOfContentsProps) => {
   const { editor } = useEditor();
   const [data, setData] = useState<TableOfContentsStorage | null>(null);
 
-  if (!editor) return null;
-
   useEffect(() => {
     const handler = ({ editor: currentEditor }: { editor: EditorInstance }) => {
       setData({ ...currentEditor.extensionStorage.tableOfContents });
     };
 
+    if (!editor) return;
     handler({ editor });
 
     editor.on("update", handler);

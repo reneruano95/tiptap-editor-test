@@ -14,26 +14,25 @@ import { SelectorItem } from "./types";
 
 export const TextButtons = memo(() => {
   const { editor } = useEditor();
-  if (!editor) return null;
 
   const onBold = useCallback(
-    () => editor.chain().focus().toggleBold().run(),
+    () => editor?.chain().focus().toggleBold().run(),
     [editor]
   );
   const onItalic = useCallback(
-    () => editor.chain().focus().toggleItalic().run(),
+    () => editor?.chain().focus().toggleItalic().run(),
     [editor]
   );
   const onStrike = useCallback(
-    () => editor.chain().focus().toggleStrike().run(),
+    () => editor?.chain().focus().toggleStrike().run(),
     [editor]
   );
   const onUnderline = useCallback(
-    () => editor.chain().focus().toggleUnderline().run(),
+    () => editor?.chain().focus().toggleUnderline().run(),
     [editor]
   );
   const onCode = useCallback(
-    () => editor.chain().focus().toggleCode().run(),
+    () => editor?.chain().focus().toggleCode().run(),
     [editor]
   );
 
@@ -82,7 +81,7 @@ export const TextButtons = memo(() => {
           <Button size="sm" className="rounded-none px-2 py-1" variant="ghost">
             <item.icon
               className={cn("h-4 w-4", {
-                "text-blue-500": item.isActive(editor),
+                "text-blue-500": item.isActive(editor!),
               })}
             />
           </Button>
@@ -91,3 +90,5 @@ export const TextButtons = memo(() => {
     </div>
   );
 });
+
+TextButtons.displayName = "TextButtons";

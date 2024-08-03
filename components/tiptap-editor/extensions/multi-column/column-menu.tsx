@@ -17,10 +17,9 @@ interface MenuProps {
 
 export const ColumnsMenu = ({ appendTo }: MenuProps) => {
   const { editor } = useEditor();
-  if (!editor) return null;
 
   const getReferenceClientRect = useCallback(() => {
-    const renderContainer = getRenderContainer(editor, "columns");
+    const renderContainer = getRenderContainer(editor!, "columns");
     const rect =
       renderContainer?.getBoundingClientRect() ||
       new DOMRect(-1000, -1000, 0, 0);
@@ -29,20 +28,20 @@ export const ColumnsMenu = ({ appendTo }: MenuProps) => {
   }, [editor]);
 
   const shouldShow = useCallback(() => {
-    const isColumns = editor.isActive("columns");
-    return isColumns;
+    const isColumns = editor?.isActive("columns");
+    return isColumns!;
   }, [editor]);
 
   const onColumnLeft = useCallback(() => {
-    editor.chain().focus().setLayout(ColumnLayout.SidebarLeft).run();
+    editor?.chain().focus().setLayout(ColumnLayout.SidebarLeft).run();
   }, [editor]);
 
   const onColumnRight = useCallback(() => {
-    editor.chain().focus().setLayout(ColumnLayout.SidebarRight).run();
+    editor?.chain().focus().setLayout(ColumnLayout.SidebarRight).run();
   }, [editor]);
 
   const onColumnTwo = useCallback(() => {
-    editor.chain().focus().setLayout(ColumnLayout.TwoColumn).run();
+    editor?.chain().focus().setLayout(ColumnLayout.TwoColumn).run();
   }, [editor]);
 
   return (
@@ -66,7 +65,7 @@ export const ColumnsMenu = ({ appendTo }: MenuProps) => {
         <Toolbar.Button
           tooltip="Sidebar left"
           active={
-            editor.isActive("columns", {
+            editor?.isActive("columns", {
               layout: ColumnLayout.SidebarLeft,
             })
               ? true
@@ -79,7 +78,7 @@ export const ColumnsMenu = ({ appendTo }: MenuProps) => {
         <Toolbar.Button
           tooltip="Two columns"
           active={
-            editor.isActive("columns", {
+            editor?.isActive("columns", {
               layout: ColumnLayout.TwoColumn,
             })
               ? true
@@ -92,7 +91,7 @@ export const ColumnsMenu = ({ appendTo }: MenuProps) => {
         <Toolbar.Button
           tooltip="Sidebar right"
           active={
-            editor.isActive("columns", {
+            editor?.isActive("columns", {
               layout: ColumnLayout.SidebarRight,
             })
               ? true

@@ -1,6 +1,8 @@
 import { forwardRef } from "react";
-import { cn } from "@/lib/utils";
 import { icons } from "lucide-react";
+
+import { cn } from "@/lib/utils";
+import { Icon } from "@/components/global/icon";
 
 export type CommandButtonProps = {
   active?: boolean;

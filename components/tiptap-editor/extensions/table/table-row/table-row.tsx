@@ -12,11 +12,10 @@ import { MenuProps, ShouldShowProps } from "../types";
 export const TableRowMenu = React.memo(
   ({ appendTo }: MenuProps): JSX.Element => {
     const { editor } = useEditor();
-    if (!editor) return <></>;
 
     const shouldShow = useCallback(
       ({ view, state, from }: ShouldShowProps) => {
-        if (!state || !from) {
+        if (!state || !from || !editor) {
           return false;
         }
 
@@ -26,15 +25,15 @@ export const TableRowMenu = React.memo(
     );
 
     const onAddRowBefore = useCallback(() => {
-      editor.chain().focus().addRowBefore().run();
+      editor?.chain().focus().addRowBefore().run();
     }, [editor]);
 
     const onAddRowAfter = useCallback(() => {
-      editor.chain().focus().addRowAfter().run();
+      editor?.chain().focus().addRowAfter().run();
     }, [editor]);
 
     const onDeleteRow = useCallback(() => {
-      editor.chain().focus().deleteRow().run();
+      editor?.chain().focus().deleteRow().run();
     }, [editor]);
 
     return (

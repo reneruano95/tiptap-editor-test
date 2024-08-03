@@ -14,22 +14,21 @@ import { SelectorItem } from "./types";
 
 export const TextAlignmentButton = memo(() => {
   const { editor } = useEditor();
-  if (!editor) return null;
 
   const onAlignLeft = useCallback(
-    () => editor.chain().focus().setTextAlign("left").run(),
+    () => editor?.chain().focus().setTextAlign("left").run(),
     [editor]
   );
   const onAlignCenter = useCallback(
-    () => editor.chain().focus().setTextAlign("center").run(),
+    () => editor?.chain().focus().setTextAlign("center").run(),
     [editor]
   );
   const onAlignRight = useCallback(
-    () => editor.chain().focus().setTextAlign("right").run(),
+    () => editor?.chain().focus().setTextAlign("right").run(),
     [editor]
   );
   const onAlignJustify = useCallback(
-    () => editor.chain().focus().setTextAlign("justify").run(),
+    () => editor?.chain().focus().setTextAlign("justify").run(),
     [editor]
   );
 
@@ -72,7 +71,7 @@ export const TextAlignmentButton = memo(() => {
           <Button size="sm" className="rounded-none px-2 py-1" variant="ghost">
             <item.icon
               className={cn("h-4 w-4", {
-                "text-blue-500": item.isActive(editor),
+                "text-blue-500": item.isActive(editor!),
               })}
             />
           </Button>
@@ -81,3 +80,5 @@ export const TextAlignmentButton = memo(() => {
     </div>
   );
 });
+
+TextAlignmentButton.displayName = "TextAlignmentButton";

@@ -24,29 +24,28 @@ import { useData } from "../drag-handle-menu/hooks/useData";
 
 export const ContentItemMenu = memo(() => {
   const { editor } = useEditor();
-  if (!editor) return null;
 
   const [menuOpen, setMenuOpen] = useState(false);
 
   const data = useData();
   const actions = useContentItemActions(
-    editor,
+    editor!,
     data.currentNode,
     data.currentNodePos
   );
 
   useEffect(() => {
     if (menuOpen) {
-      editor.commands.setMeta("lockDragHandle", true);
+      editor?.commands.setMeta("lockDragHandle", true);
     } else {
-      editor.commands.setMeta("lockDragHandle", false);
+      editor?.commands.setMeta("lockDragHandle", false);
     }
   }, [editor, menuOpen]);
 
   return (
     <DragHandle
       pluginKey="ContentItemMenu"
-      editor={editor}
+      editor={editor!}
       onNodeChange={data.handleNodeChange}
       tippyOptions={{
         offset: [-2, 16],
@@ -120,3 +119,5 @@ export const ContentItemMenu = memo(() => {
     </DragHandle>
   );
 });
+
+ContentItemMenu.displayName = "ContentItemMenu";

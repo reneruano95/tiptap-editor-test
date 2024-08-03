@@ -50,3 +50,5 @@ export const BubbleMenu = memo(() => {
     </EditorBubble>
   );
 });
+
+BubbleMenu.displayName = "BubbleMenu";
