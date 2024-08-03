@@ -1,4 +1,4 @@
-import { cn } from "@/lib/utils";
+import { memo, useCallback } from "react";
 import { EditorBubbleItem, useEditor } from "novel";
 import {
   BoldIcon,
@@ -7,42 +7,65 @@ import {
   StrikethroughIcon,
   CodeIcon,
 } from "lucide-react";
-import type { SelectorItem } from "./node-selector";
-import { Button } from "@/components/ui/button";
 
-export const TextButtons = () => {
+import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
+import { SelectorItem } from "./types";
+
+export const TextButtons = memo(() => {
   const { editor } = useEditor();
   if (!editor) return null;
+
+  const onBold = useCallback(
+    () => editor.chain().focus().toggleBold().run(),
+    [editor]
+  );
+  const onItalic = useCallback(
+    () => editor.chain().focus().toggleItalic().run(),
+    [editor]
+  );
+  const onStrike = useCallback(
+    () => editor.chain().focus().toggleStrike().run(),
+    [editor]
+  );
+  const onUnderline = useCallback(
+    () => editor.chain().focus().toggleUnderline().run(),
+    [editor]
+  );
+  const onCode = useCallback(
+    () => editor.chain().focus().toggleCode().run(),
+    [editor]
+  );
 
   const items: SelectorItem[] = [
     {
       name: "bold",
       isActive: (editor) => editor.isActive("bold"),
-      command: (editor) => editor.chain().focus().toggleBold().run(),
+      command: onBold,
       icon: BoldIcon,
     },
     {
       name: "italic",
       isActive: (editor) => editor.isActive("italic"),
-      command: (editor) => editor.chain().focus().toggleItalic().run(),
+      command: onItalic,
       icon: ItalicIcon,
     },
     {
       name: "underline",
       isActive: (editor) => editor.isActive("underline"),
-      command: (editor) => editor.chain().focus().toggleUnderline().run(),
+      command: onUnderline,
       icon: UnderlineIcon,
     },
     {
       name: "strike",
       isActive: (editor) => editor.isActive("strike"),
-      command: (editor) => editor.chain().focus().toggleStrike().run(),
+      command: onStrike,
       icon: StrikethroughIcon,
     },
     {
       name: "code",
       isActive: (editor) => editor.isActive("code"),
-      command: (editor) => editor.chain().focus().toggleCode().run(),
+      command: onCode,
       icon: CodeIcon,
     },
   ];
@@ -56,7 +79,7 @@ export const TextButtons = () => {
             item.command(editor);
           }}
         >
-          <Button size="sm" className="rounded-none" variant="ghost">
+          <Button size="sm" className="rounded-none px-2 py-1" variant="ghost">
             <item.icon
               className={cn("h-4 w-4", {
                 "text-blue-500": item.isActive(editor),
@@ -67,4 +90,4 @@ export const TextButtons = () => {
       ))}
     </div>
   );
-};
+});

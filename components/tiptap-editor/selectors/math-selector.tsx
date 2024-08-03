@@ -1,18 +1,19 @@
+import { memo } from "react";
+import { useEditor } from "novel";
+import { SigmaIcon } from "lucide-react";
+
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { SigmaIcon } from "lucide-react";
-import { useEditor } from "novel";
 
-export const MathSelector = () => {
+export const MathSelector = memo(() => {
   const { editor } = useEditor();
-
   if (!editor) return null;
 
   return (
     <Button
       variant="ghost"
       size="sm"
-      className="rounded-none w-12"
+      className="rounded-none px-2 py-1"
       onClick={(evt) => {
         if (editor.isActive("math")) {
           editor.chain().focus().unsetLatex().run();
@@ -32,4 +33,4 @@ export const MathSelector = () => {
       />
     </Button>
   );
-};
+});

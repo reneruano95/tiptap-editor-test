@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { Check, ChevronDown } from "lucide-react";
 import { EditorBubbleItem, useEditor } from "novel";
 
@@ -7,11 +8,7 @@ import {
   PopoverContent,
 } from "@/components/ui/popover";
 import { Button } from "@/components/ui/button";
-
-export interface BubbleColorMenuItem {
-  name: string;
-  color: string;
-}
+import { BubbleColorMenuItem } from "./types";
 
 const TEXT_COLORS: BubbleColorMenuItem[] = [
   {
@@ -96,102 +93,104 @@ interface ColorSelectorProps {
   onOpenChange: (open: boolean) => void;
 }
 
-export const ColorSelector = ({ open, onOpenChange }: ColorSelectorProps) => {
-  const { editor } = useEditor();
+export const ColorSelector = memo(
+  ({ open, onOpenChange }: ColorSelectorProps) => {
+    const { editor } = useEditor();
 
-  if (!editor) return null;
-  const activeColorItem = TEXT_COLORS.find(({ color }) =>
-    editor.isActive("textStyle", { color })
-  );
+    if (!editor) return null;
+    const activeColorItem = TEXT_COLORS.find(({ color }) =>
+      editor.isActive("textStyle", { color })
+    );
 
-  const activeHighlightItem = HIGHLIGHT_COLORS.find(({ color }) =>
-    editor.isActive("highlight", { color })
-  );
+    const activeHighlightItem = HIGHLIGHT_COLORS.find(({ color }) =>
+      editor.isActive("highlight", { color })
+    );
 
-  return (
-    <Popover modal={true} open={open} onOpenChange={onOpenChange}>
-      <PopoverTrigger asChild>
-        <Button size="sm" className="gap-2 rounded-none" variant="ghost">
-          <span
-            className="rounded-sm px-1"
-            style={{
-              color: activeColorItem?.color,
-              backgroundColor: activeHighlightItem?.color,
-            }}
-          >
-            A
-          </span>
-          <ChevronDown className="h-4 w-4" />
-        </Button>
-      </PopoverTrigger>
-
-      <PopoverContent
-        sideOffset={5}
-        className="my-1 flex max-h-80 w-48 flex-col overflow-hidden overflow-y-auto rounded border p-1 shadow-xl "
-        align="start"
-      >
-        <div className="flex flex-col">
-          <div className="my-1 px-2 text-sm font-semibold text-muted-foreground">
-            Color
-          </div>
-          {TEXT_COLORS.map(({ name, color }, index) => (
-            <EditorBubbleItem
-              key={index}
-              onSelect={() => {
-                editor.commands.unsetColor();
-                name !== "Default" &&
-                  editor
-                    .chain()
-                    .focus()
-                    .setColor(color || "")
-                    .run();
-                onOpenChange(false);
+    return (
+      <Popover modal={true} open={open} onOpenChange={onOpenChange}>
+        <PopoverTrigger asChild>
+          <Button size="sm" className="gap-2 rounded-none" variant="ghost">
+            <span
+              className="rounded-sm px-1"
+              style={{
+                color: activeColorItem?.color,
+                backgroundColor: activeHighlightItem?.color,
               }}
-              className="flex cursor-pointer items-center justify-between px-2 py-1 text-sm hover:bg-accent"
             >
-              <div className="flex items-center gap-2">
-                <div
-                  className="rounded-sm border px-2 py-px font-medium"
-                  style={{ color }}
-                >
-                  A
+              A
+            </span>
+            <ChevronDown className="h-4 w-4" />
+          </Button>
+        </PopoverTrigger>
+
+        <PopoverContent
+          sideOffset={5}
+          className="my-1 flex max-h-80 w-48 flex-col overflow-hidden overflow-y-auto rounded border p-1 shadow-xl "
+          align="start"
+        >
+          <div className="flex flex-col">
+            <div className="my-1 px-2 text-sm font-semibold text-muted-foreground">
+              Color
+            </div>
+            {TEXT_COLORS.map(({ name, color }, index) => (
+              <EditorBubbleItem
+                key={index}
+                onSelect={() => {
+                  editor.commands.unsetColor();
+                  name !== "Default" &&
+                    editor
+                      .chain()
+                      .focus()
+                      .setColor(color || "")
+                      .run();
+                  onOpenChange(false);
+                }}
+                className="flex cursor-pointer items-center justify-between px-2 py-1 text-sm hover:bg-accent"
+              >
+                <div className="flex items-center gap-2">
+                  <div
+                    className="rounded-sm border px-2 py-px font-medium"
+                    style={{ color }}
+                  >
+                    A
+                  </div>
+                  <span>{name}</span>
                 </div>
-                <span>{name}</span>
-              </div>
-            </EditorBubbleItem>
-          ))}
-        </div>
-        <div>
-          <div className="my-1 px-2 text-sm font-semibold text-muted-foreground">
-            Background
+              </EditorBubbleItem>
+            ))}
           </div>
-          {HIGHLIGHT_COLORS.map(({ name, color }, index) => (
-            <EditorBubbleItem
-              key={index}
-              onSelect={() => {
-                editor.commands.unsetHighlight();
-                name !== "Default" &&
-                  editor.chain().focus().setHighlight({ color }).run();
-                onOpenChange(false);
-              }}
-              className="flex cursor-pointer items-center justify-between px-2 py-1 text-sm hover:bg-accent"
-            >
-              <div className="flex items-center gap-2">
-                <div
-                  className="rounded-sm border px-2 py-px font-medium"
-                  style={{ backgroundColor: color }}
-                >
-                  A
+          <div>
+            <div className="my-1 px-2 text-sm font-semibold text-muted-foreground">
+              Background
+            </div>
+            {HIGHLIGHT_COLORS.map(({ name, color }, index) => (
+              <EditorBubbleItem
+                key={index}
+                onSelect={() => {
+                  editor.commands.unsetHighlight();
+                  name !== "Default" &&
+                    editor.chain().focus().setHighlight({ color }).run();
+                  onOpenChange(false);
+                }}
+                className="flex cursor-pointer items-center justify-between px-2 py-1 text-sm hover:bg-accent"
+              >
+                <div className="flex items-center gap-2">
+                  <div
+                    className="rounded-sm border px-2 py-px font-medium"
+                    style={{ backgroundColor: color }}
+                  >
+                    A
+                  </div>
+                  <span>{name}</span>
                 </div>
-                <span>{name}</span>
-              </div>
-              {editor.isActive("highlight", { color }) && (
-                <Check className="h-4 w-4" />
-              )}
-            </EditorBubbleItem>
-          ))}
-        </div>
-      </PopoverContent>
-    </Popover>
-  );
-};
+                {editor.isActive("highlight", { color }) && (
+                  <Check className="h-4 w-4" />
+                )}
+              </EditorBubbleItem>
+            ))}
+          </div>
+        </PopoverContent>
+      </Popover>
+    );
+  }
+);

@@ -25,6 +25,7 @@ import "@/styles/index.css";
 import ColumnsMenu from "./extensions/multi-column/column-menu";
 import TableRowMenu from "./extensions/table/table-row/table-row";
 import TableColumnMenu from "./extensions/table/table-column/table-column";
+import { TextAlignmentButton } from "./selectors/text-alignment-button";
 
 const hljs = require("highlight.js");
 
@@ -147,24 +148,27 @@ const Editor = ({ doc, provider }: EditorProps) => {
           <TableColumnMenu appendTo={menuContainerRef} />
 
           <EditorBubble
-            shouldShow={({ editor }) =>
-              !editor.isActive("tableCell") &&
-              !editor.isActive("tableOfContentsNode")
-            }
             tippyOptions={{
               placement: "top",
             }}
             className="flex w-fit max-w-[90vw] overflow-hidden rounded-md border border-muted bg-background shadow-xl"
           >
             <NodeSelector open={openNode} onOpenChange={setOpenNode} />
+
             <Separator orientation="vertical" />
             <MathSelector />
+
             <Separator orientation="vertical" />
             <LinkSelector open={openLink} onOpenChange={setOpenLink} />
+
             <Separator orientation="vertical" />
             <TextButtons />
+
             <Separator orientation="vertical" />
             <ColorSelector open={openColor} onOpenChange={setOpenColor} />
+
+            <Separator orientation="vertical" />
+            <TextAlignmentButton />
           </EditorBubble>
         </EditorContent>
       </EditorRoot>

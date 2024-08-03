@@ -24,6 +24,7 @@ import { UploadImagesPlugin } from "novel/plugins";
 import AutoJoiner from "tiptap-extension-auto-joiner";
 
 import TableOfContents from "@tiptap-pro/extension-table-of-contents";
+import { TextAlign } from "@tiptap/extension-text-align";
 import { cx } from "class-variance-authority";
 import { common, createLowlight } from "lowlight";
 
@@ -167,6 +168,14 @@ const mathematics = Mathematics.configure({
 
 const characterCount = CharacterCount.configure();
 
+const textAlign = TextAlign.extend({
+  addKeyboardShortcuts() {
+    return {};
+  },
+}).configure({
+  types: ["heading", "paragraph"],
+});
+
 export const defaultExtensions = [
   starterKit,
   placeholder,
@@ -197,4 +206,5 @@ export const defaultExtensions = [
   TableCell,
   TableHeader,
   TableRow,
+  textAlign,
 ];
