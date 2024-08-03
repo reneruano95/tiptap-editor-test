@@ -21,8 +21,8 @@ import {
 } from "@/components/ui/popover";
 import { Button } from "@/components/ui/button";
 
-import { useContentItemActions } from "./hooks/useContentItemActions";
-import { useData } from "./hooks/useData";
+import { useContentItemActions } from "../drag-handle-menu/hooks/useContentItemActions";
+import { useData } from "../drag-handle-menu/hooks/useData";
 
 export const ContentItemMenu = memo(() => {
   const { editor } = useEditor();

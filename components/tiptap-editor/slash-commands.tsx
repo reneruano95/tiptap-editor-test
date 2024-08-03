@@ -9,6 +9,7 @@ import {
   List,
   ListOrdered,
   Minus,
+  Quote,
   Text,
   TextQuote,
   Youtube,
@@ -105,7 +106,7 @@ export const suggestionItems = createSuggestionItems([
     title: "Quote",
     description: "Capture a quote.",
     searchTerms: ["blockquote"],
-    icon: <TextQuote size={18} />,
+    icon: <Quote size={18} />,
     command: ({ editor, range }) =>
       editor
         .chain()

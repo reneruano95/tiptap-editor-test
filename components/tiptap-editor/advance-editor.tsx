@@ -32,7 +32,7 @@ import * as Y from "yjs";
 import { MathSelector } from "./selectors/math-selector";
 
 import "@/styles/index.css";
-import { ContentItemMenu } from "./menu-drag-handle/content-item-menu";
+import { ContentItemMenu } from "./drag-handle-menu/content-item-menu";
 
 const hljs = require("highlight.js");
 
