@@ -76,18 +76,11 @@
   }
 }
 
-@keyframes spinning {
+/* @keyframes spinning {
   to {
     transform: rotate(360deg);
   }
-}
-
-.ProseMirror:not(.dragging) .ProseMirror-selectednode {
-  outline: none !important;
-  background-color: var(--novel-highlight-blue);
-  transition: background-color 0.2s;
-  box-shadow: none;
-}
+} */
 
 @import "./partials/code.css";
 @import "./partials/lists.css";
