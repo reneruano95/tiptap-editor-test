@@ -1,5 +1,10 @@
 .ProseMirror {
-  @apply p-12 px-8 sm:px-12;
+  @apply p-12 px-8 sm:px-12 caret-black dark:caret-white outline-0 pr-8 z-0 lg:pl-8 lg:pr-8;
+
+  & > * {
+    @apply mx-auto max-w-2xl;
+  }
+
   .is-empty::before {
     @apply text-neutral-500 dark:text-neutral-400;
   }
@@ -7,6 +12,35 @@
   & > * + * {
     @apply mt-2;
   }
+
+  .selection {
+    @apply inline;
+  }
+
+  .selection,
+  *::selection {
+    @apply bg-black/10 dark:bg-white/20;
+  }
+
+  & > .react-renderer {
+    @apply my-3 first:mt-0 last:mb-0;
+  }
+
+  &.resize-cursor {
+    @apply cursor-col-resize;
+  }
+
+  .ProseMirror-gapcursor {
+    @apply relative w-full max-w-2xl mx-auto;
+
+    &:after {
+      @apply border-t-black/40 dark:border-t-white/40 w-full -top-[1.5em] max-w-2xl mx-auto left-0 right-0;
+    }
+  }
+}
+
+[data-theme="slash-command"] {
+  width: 1000vw;
 }
 
 /* Custom image styles */
@@ -112,3 +146,9 @@ ul[data-type="taskList"] li[data-checked="true"] > div > p {
   transition: background-color 0.2s;
   box-shadow: none;
 }
+
+@import "./partials/code.css";
+@import "./partials/lists.css";
+@import "./partials/placeholder.css";
+@import "./partials/table.css";
+@import "./partials/typography.css";

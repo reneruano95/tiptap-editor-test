@@ -18,8 +18,6 @@ import TableRowMenu from "./extensions/table/table-row/table-row";
 import TableColumnMenu from "./extensions/table/table-column/table-column";
 import { BubbleMenu } from "./bubble-menu";
 
-import "@/styles/index.css";
-
 const hljs = require("highlight.js");
 
 export function CollaborativeEditor() {
