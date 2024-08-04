@@ -18,7 +18,7 @@ import TableRowMenu from "./extensions/table/table-row/table-row";
 import TableColumnMenu from "./extensions/table/table-column/table-column";
 import { BubbleMenu } from "./bubble-menu";
 
-import "../../styles/prosemirror.css";
+import "@/styles/prosemirror.css";
 
 export function CollaborativeEditor() {
   const room = useRoom();
@@ -105,7 +105,7 @@ const Editor = ({ doc, provider }: EditorProps) => {
             handleDrop: (view, event, _slice, moved) =>
               handleImageDrop(view, event, moved, uploadFn),
             attributes: {
-              class: `prose prose-lg dark:prose-invert prose-headings:font-title font-default focus:outline-none max-w-full`,
+              class: "flex-1 overflow-y-auto",
             },
           }}
           slotAfter={<ImageResizer />}

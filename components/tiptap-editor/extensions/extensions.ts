@@ -45,6 +45,7 @@ const aiHighlight = AIHighlight;
 const placeholder = Placeholder.configure({
   includeChildren: true,
   showOnlyCurrent: false,
+  placeholder: () => "Start typing...",
 });
 const tiptapLink = TiptapLink.configure({
   HTMLAttributes: {
@@ -80,15 +81,8 @@ const updatedImage = UpdatedImage.configure({
   },
 });
 
-const taskList = TaskList.configure({
-  HTMLAttributes: {
-    class: cx("not-prose pl-2 "),
-  },
-});
+const taskList = TaskList;
 const taskItem = TaskItem.configure({
-  HTMLAttributes: {
-    class: cx("flex gap-2 items-start my-2"),
-  },
   nested: true,
 });
 
