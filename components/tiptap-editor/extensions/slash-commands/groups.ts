@@ -111,22 +111,22 @@ export const GROUPS: Group[] = [
             .run();
         },
       },
-      {
-        name: "columns",
-        label: "Columns",
-        iconName: "Columns2",
-        description: "Add two column content",
-        aliases: ["cols"],
-        shouldBeHidden: (editor) => editor.isActive("columns"),
-        action: (editor) => {
-          editor
-            .chain()
-            .focus()
-            .setColumns()
-            .focus(editor.state.selection.head - 1)
-            .run();
-        },
-      },
+      // {
+      //   name: "columns",
+      //   label: "Columns",
+      //   iconName: "Columns2",
+      //   description: "Add two column content",
+      //   aliases: ["cols"],
+      //   shouldBeHidden: (editor) => editor.isActive("columns"),
+      //   action: (editor) => {
+      //     editor
+      //       .chain()
+      //       .focus()
+      //       .setColumns()
+      //       .focus(editor.state.selection.head - 1)
+      //       .run();
+      //   },
+      // },
       {
         name: "horizontalRule",
         label: "Horizontal Rule",
