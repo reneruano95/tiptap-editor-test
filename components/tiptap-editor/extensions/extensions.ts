@@ -36,6 +36,9 @@ import { Table } from "./table/table";
 import { TableHeader } from "./table/header";
 import { TableRow } from "./table/row";
 import { TableCell } from "./table/cell";
+import { Selection } from "./selection/selection";
+import { TrailingNode } from "./trailing-node/trailing-node";
+import Dropcursor from "@tiptap/extension-dropcursor";
 
 //TODO I am using cx here to get tailwind autocomplete working, idk if someone else can write a regex to just capture the class key in objects
 const aiHighlight = AIHighlight;
@@ -55,10 +58,6 @@ const tableOfContentsNode = TableOfContentsNode;
 
 const document = TiptapDocument.extend({
   content: "(block|columns)+",
-});
-
-const autoJoiner = AutoJoiner.configure({
-  elementsToJoin: ["bulletList", "orderedList"], // default
 });
 
 const tiptapImage = TiptapImage.extend({
@@ -147,6 +146,11 @@ const textAlign = TextAlign.extend({
   types: ["heading", "paragraph"],
 });
 
+const dropcursor = Dropcursor.configure({
+  width: 2,
+  class: "ProseMirror-dropcursor border-black",
+});
+
 export const defaultExtensions = [
   starterKit,
   placeholder,
@@ -167,7 +171,6 @@ export const defaultExtensions = [
   TextStyle,
   Color,
   CustomKeymap,
-  autoJoiner,
   tableOfContents,
   tableOfContentsNode,
   SlashCommand,
@@ -179,4 +182,7 @@ export const defaultExtensions = [
   TableRow,
   textAlign,
   document,
+  Selection,
+  TrailingNode,
+  dropcursor,
 ];
