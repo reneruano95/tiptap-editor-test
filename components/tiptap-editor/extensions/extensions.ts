@@ -20,7 +20,6 @@ import {
   Mathematics,
 } from "novel/extensions";
 import { UploadImagesPlugin } from "novel/plugins";
-import AutoJoiner from "tiptap-extension-auto-joiner";
 import { Document as TiptapDocument } from "@tiptap/extension-document";
 import TableOfContents from "@tiptap-pro/extension-table-of-contents";
 import { TextAlign } from "@tiptap/extension-text-align";

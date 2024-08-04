@@ -20,8 +20,6 @@ import { BubbleMenu } from "./bubble-menu";
 
 import "../../styles/prosemirror.css";
 
-const hljs = require("highlight.js");
-
 export function CollaborativeEditor() {
   const room = useRoom();
   const [doc, setDoc] = useState<Y.Doc>();
@@ -57,17 +55,6 @@ const Editor = ({ doc, provider }: EditorProps) => {
 
   const [charsCount, setCharsCount] = useState<number>();
   const [wordsCount, setWordsCount] = useState<number>();
-
-  //Apply Codeblock Highlighting on the HTML from editor.getHTML()
-  const highlightCodeblocks = (content: string) => {
-    const doc = new DOMParser().parseFromString(content, "text/html");
-    doc.querySelectorAll("pre code").forEach((el) => {
-      // @ts-ignore
-      // https://highlightjs.readthedocs.io/en/latest/api.html?highlight=highlightElement#highlightelement
-      hljs.highlightElement(el);
-    });
-    return new XMLSerializer().serializeToString(doc);
-  };
 
   return (
     <div className="relative w-full max-w-screen-lg" ref={menuContainerRef}>
@@ -123,8 +110,6 @@ const Editor = ({ doc, provider }: EditorProps) => {
           }}
           slotAfter={<ImageResizer />}
           onUpdate={({ editor }) => {
-            const content = editor.getHTML();
-            const highlightedContent = highlightCodeblocks(content);
             const charCount = editor.storage.characterCount.characters();
             const wordCount = editor.storage.characterCount.words();
 
