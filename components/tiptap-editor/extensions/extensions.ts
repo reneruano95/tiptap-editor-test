@@ -12,17 +12,17 @@ import {
   TaskItem,
   TaskList,
   TextStyle,
-  TiptapImage,
   TiptapLink,
   TiptapUnderline,
   UpdatedImage,
   Youtube,
   Mathematics,
 } from "novel/extensions";
-import { UploadImagesPlugin } from "novel/plugins";
 import { Document as TiptapDocument } from "@tiptap/extension-document";
 import TableOfContents from "@tiptap-pro/extension-table-of-contents";
 import { TextAlign } from "@tiptap/extension-text-align";
+import Blockquote from "@tiptap/extension-blockquote";
+import Dropcursor from "@tiptap/extension-dropcursor";
 
 import { cx } from "class-variance-authority";
 import { common, createLowlight } from "lowlight";
@@ -37,7 +37,7 @@ import { TableRow } from "./table/row";
 import { TableCell } from "./table/cell";
 import { Selection } from "./selection/selection";
 import { TrailingNode } from "./trailing-node/trailing-node";
-import Dropcursor from "@tiptap/extension-dropcursor";
+import { Image } from "./image/image";
 
 //TODO I am using cx here to get tailwind autocomplete working, idk if someone else can write a regex to just capture the class key in objects
 const aiHighlight = AIHighlight;
@@ -45,8 +45,8 @@ const aiHighlight = AIHighlight;
 const placeholder = Placeholder.configure({
   includeChildren: true,
   showOnlyCurrent: false,
-  placeholder: () => "Start typing...",
 });
+
 const tiptapLink = TiptapLink.configure({
   HTMLAttributes: {
     class: cx("link", "no-underline  hover:underline"),
@@ -58,21 +58,6 @@ const tableOfContentsNode = TableOfContentsNode;
 
 const document = TiptapDocument.extend({
   content: "(block|columns)+",
-});
-
-const tiptapImage = TiptapImage.extend({
-  addProseMirrorPlugins() {
-    return [
-      UploadImagesPlugin({
-        imageClass: cx("opacity-40 rounded-lg border border-stone-200"),
-      }),
-    ];
-  },
-}).configure({
-  allowBase64: true,
-  HTMLAttributes: {
-    class: cx("rounded-lg border border-muted"),
-  },
 });
 
 const updatedImage = UpdatedImage.configure({
@@ -113,12 +98,12 @@ const codeBlockLowlight = CodeBlockLowlight.configure({
   lowlight: createLowlight(common),
 });
 
-const youtube = Youtube.configure({
-  HTMLAttributes: {
-    class: cx("rounded-lg border border-muted"),
-  },
-  inline: false,
-});
+// const youtube = Youtube.configure({
+//   HTMLAttributes: {
+//     class: cx("rounded-lg border border-muted"),
+//   },
+//   inline: false,
+// });
 
 const mathematics = Mathematics.configure({
   HTMLAttributes: {
@@ -148,14 +133,14 @@ export const defaultExtensions = [
   starterKit,
   placeholder,
   tiptapLink,
-  tiptapImage,
+  Image,
   updatedImage,
   taskList,
   taskItem,
   horizontalRule,
   aiHighlight,
   codeBlockLowlight,
-  youtube,
+  // youtube,
   mathematics,
   characterCount,
   TiptapUnderline,
@@ -178,4 +163,5 @@ export const defaultExtensions = [
   Selection,
   TrailingNode,
   dropcursor,
+  Blockquote,
 ];

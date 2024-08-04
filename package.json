@@ -22,6 +22,7 @@
     "@tailwindcss/typography": "^0.5.13",
     "@tiptap-pro/extension-drag-handle-react": "^2.10.7",
     "@tiptap-pro/extension-table-of-contents": "^2.10.7",
+    "@tiptap/extension-blockquote": "^2.5.8",
     "@tiptap/extension-collaboration": "^2.5.8",
     "@tiptap/extension-collaboration-cursor": "^2.5.8",
     "@tiptap/extension-document": "^2.5.8",

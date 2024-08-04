@@ -76,12 +76,12 @@
   }
 }
 
-/* @keyframes spinning {
+@keyframes spinning {
   to {
     transform: rotate(360deg);
   }
-} */
-
+}
+@import "./partials/blocks.css";
 @import "./partials/code.css";
 @import "./partials/lists.css";
 @import "./partials/placeholder.css";

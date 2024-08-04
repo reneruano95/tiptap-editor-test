@@ -96,20 +96,20 @@ const items: SelectorItem[] = [
     command: (editor) => editor.chain().focus().toggleOrderedList().run(),
     isActive: (editor) => editor.isActive("orderedList"),
   },
-  {
-    name: "Quote",
-    icon: Quote,
-    command: (editor) =>
-      editor.chain().focus().clearNodes().toggleBlockquote().run(),
-    isActive: (editor) => editor.isActive("blockquote"),
-  },
-  {
-    name: "Code",
-    icon: Code,
-    command: (editor) =>
-      editor.chain().focus().clearNodes().toggleCodeBlock().run(),
-    isActive: (editor) => editor.isActive("codeBlock"),
-  },
+  // {
+  //   name: "Blockquote",
+  //   icon: Quote,
+  //   command: (editor) =>
+  //     editor.chain().focus().clearNodes().setBlockquote().run(),
+  //   isActive: (editor) => editor.isActive("blockquote"),
+  // },
+  // {
+  //   name: "Code BLock",
+  //   icon: Code,
+  //   command: (editor) =>
+  //     editor.chain().focus().clearNodes().toggleCodeBlock().run(),
+  //   isActive: (editor) => editor.isActive("codeBlock"),
+  // },
 ];
 interface NodeSelectorProps {
   open: boolean;
