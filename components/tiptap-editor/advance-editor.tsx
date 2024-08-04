@@ -118,7 +118,7 @@ const Editor = ({ doc, provider }: EditorProps) => {
             handleDrop: (view, event, _slice, moved) =>
               handleImageDrop(view, event, moved, uploadFn),
             attributes: {
-              class: `font-default focus:outline-none max-w-full`,
+              class: `prose prose-lg dark:prose-invert prose-headings:font-title font-default focus:outline-none max-w-full`,
             },
           }}
           slotAfter={<ImageResizer />}
