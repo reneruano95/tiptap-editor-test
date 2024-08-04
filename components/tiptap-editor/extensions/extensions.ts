@@ -23,6 +23,7 @@ import TableOfContents from "@tiptap-pro/extension-table-of-contents";
 import { TextAlign } from "@tiptap/extension-text-align";
 import Blockquote from "@tiptap/extension-blockquote";
 import Dropcursor from "@tiptap/extension-dropcursor";
+import Code from "@tiptap/extension-code";
 
 import { cx } from "class-variance-authority";
 import { common, createLowlight } from "lowlight";
@@ -164,4 +165,5 @@ export const defaultExtensions = [
   TrailingNode,
   dropcursor,
   Blockquote,
+  Code,
 ];

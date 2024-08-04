@@ -1,5 +1,3 @@
-"use client";
-
 import { CollaborativeEditor } from "@/components/tiptap-editor/advance-editor";
 
 export default function RoomPage() {
